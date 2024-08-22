@@ -1,0 +1,127 @@
+<?php
+// Register CMB2 Fields as the Main Options Page
+function my_theme_options_metabox() {
+    $cmb = new_cmb2_box(array(
+        'id'           => 'my_theme_options_metabox',
+        'title'        => 'Header and Footer Settings',
+        'object_types' => array('options-page'),
+        'option_key'   => 'my_theme_options_header_footer', // Unique key for the options page
+        'menu_title'   => 'G9X Theme Settings', // Title to display in the admin menu
+        'icon_url'     => '', // Add an icon URL if needed
+        'position'     => 100, // Position in the sidebar
+    ));
+    
+    // Section: Header Settings
+    $cmb->add_field(array(
+        'name' => 'Header Settings',
+        'id'   => 'header_section_title',
+        'type' => 'title',
+        'before_row' => '<h2>Header Settings</h2>',
+    ));
+
+    // Header Logo Field
+    $cmb->add_field(array(
+        'name' => 'Header Logo',
+        'id'   => 'header_logo',
+        'type' => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text' => array(
+            'add_upload_file_text' => 'Add Logo'
+        ),
+    ));
+
+    // Header Button Fields
+    $cmb->add_field(array(
+        'name' => 'Header Button Text',
+        'id'   => 'header_button_text',
+        'type' => 'text',
+    ));
+
+    $cmb->add_field(array(
+        'name' => 'Header Button URL',
+        'id'   => 'header_button_url',
+        'type' => 'text_url',
+    ));
+    
+    // Section: Footer Settings
+    $cmb->add_field(array(
+        'name' => 'Footer Settings',
+        'id'   => 'footer_section_title',
+        'type' => 'title',
+        'before_row' => '<h2>Footer Settings</h2>',
+    ));
+
+    // Footer Logo Field
+    $cmb->add_field(array(
+        'name' => 'Footer Logo',
+        'id'   => 'footer_logo',
+        'type' => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text' => array(
+            'add_upload_file_text' => 'Add Footer Logo'
+        ),
+    ));
+
+	 // Footer Contact Us Phone Number
+    $cmb->add_field(array(
+        'name' => 'Contact Us Number',
+        'id'   => 'footer_contact_us',
+        'type' => 'text',
+    ));
+	
+	  // Footer Contact Address
+    $cmb->add_field(array(
+        'name' => 'Contact Location',
+        'id'   => 'footer_contact_location',
+        'type' => 'text',
+    ));
+	
+    // Footer Donate Button Text
+    $cmb->add_field(array(
+        'name' => 'Office Hours',
+        'id'   => 'footer_office_hours',
+        'type' => 'wysiwyg',
+    ));
+
+
+    // Footer Quick Links
+    $cmb->add_field(array(
+        'name' => 'Questions',
+        'id'   => 'footer_question',
+        'type' => 'group',
+        'options' => array(
+            'group_title'   => 'Question {#}',
+            'add_button'    => 'Add Another Question',
+            'remove_button' => 'Remove Question',
+            'sortable'      => true,
+			'closed'         => true, 
+			'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ),
+        ),
+        'fields' => array(
+            array(
+                'name' => 'Question',
+                'id'   => 'question_text',
+                'type' => 'text',
+            )
+           
+        ),
+    ));
+   $cmb->add_field(array(
+        'name' => 'Footer Certified Image',
+        'id'   => 'footer_certified_image',
+        'type' => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text' => array(
+            'add_upload_file_text' => 'Add Footer Certified Image'
+        ),
+    ));
+}
+add_action('cmb2_admin_init', 'my_theme_options_metabox');
+
+?>
