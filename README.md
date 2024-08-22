@@ -1,12 +1,6 @@
 # WP-CMS-Fields-with-CMB2
 Create a fields for the CMS with CMB2 
 
-Activity#1{
-fieldtypes:[
-https://cmb2.io/docs/field-types
-
-]
-}
 
 To Use:
 1: Install CMB2 Plugin
