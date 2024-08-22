@@ -1,0 +1,336 @@
+<?php
+
+function tf_register_homepage_sections_with_separate_tabs() {
+	$prefix = 'homepage_';
+
+	// Metabox for Home Banner
+	$cmb_home_banner = new_cmb2_box(array(
+		'id'            => $prefix . 'home_banner',
+		'title'         => __('Home Banner', 'retreatatcarrolton'),
+		'object_types'  => array('page'),
+		// 'show_on'       => array('key' => 'page-template', 'value' => 'homepage.php'),
+		'show_on_cb' => 'hide_field_callback',
+	
+		'tabs' => array(
+			array(
+				'id'    => 'home_banner',
+				'icon'  => 'dashicons-admin-site',
+				'title' => __('Home Banner', 'retreatatcarrolton'),
+				'fields' => array(
+					$prefix . 'background_image',
+					$prefix . 'heading',
+					
+				),
+			),
+		),
+	));
+
+	$cmb_home_banner->add_field(array(
+		'name' => __('Background Image', 'retreatatcarrolton'),
+		'id'   => $prefix . 'background_image',
+		'type' => 'file',
+		'desc' => __('Upload a background image for the Home Banner.', 'retreatatcarrolton'),
+	));
+
+	$cmb_home_banner->add_field(array(
+		'name' => __('Heading', 'retreatatcarrolton'),
+		'id'   => $prefix . 'heading',
+		'type' => 'text',
+		'desc' => __('Enter the heading for the Home Banner.', 'retreatatcarrolton'),
+	));
+
+	// Metabox for Banner Card
+	$cmb_banner_card = new_cmb2_box(array(
+		'id'            => $prefix . 'banner_card',
+		'title'         => __('Banner Card', 'rer'),
+		'object_types'  => array('page'),
+		'show_on_cb' => 'hide_field_callback',
+		// 'show_on'       => array('key' => 'page-template', 'value' => 'homepage.php'),
+		'tabs' => array(
+			array(
+				'id'    => 'banner_card',
+				'icon'  => 'dashicons-align-left',
+				'title' => __('Banner Card', 'maainspiration'),
+				'fields' => array(
+					$prefix . 'hunger_heading',
+				),
+			),
+		),
+	));
+	
+	$cmb_banner_card->add_field(array(
+		'name' => __('Banner Card Heading', 'retreatatcarrolton'),
+		'id'   => $prefix . 'banner_card_heading',
+		'type' => 'text',
+		'desc' => __('Enter the Heading for the Banner Card.', 'retreatatcarrolton'),
+	));
+		$cmb_banner_card->add_field(array(
+		'name' => __('CTA Text', 'retreatatcarrolton'),
+		'id'   => $prefix . 'banner_card_cta_text',
+		'type' => 'text',
+		'desc' => __('Enter the Call-to-Action text.', 'retreatatcarrolton'),
+	));
+
+	$cmb_banner_card->add_field(array(
+		'name' => __('CTA URL', 'retreatatcarrolton'),
+		'id'   => $prefix . 'banner_card_cta_url',
+		'type' => 'text_url',
+		'desc' => __('Enter the URL for the Call-to-Action.', 'retreatatcarrolton'),
+	));
+	
+	// Metabox for Introduction
+	$cmb_intro_section = new_cmb2_box(array(
+		'id'            => $prefix . 'intro_section',
+		'title'         => __('Intro Section', 'retreatatcarrolton'),
+		'object_types'  => array('page'),
+		'show_on_cb' => 'hide_field_callback',
+		// 'show_on'       => array('key' => 'page-template', 'value' => 'homepage.php'),
+		'tabs' => array(
+			array(
+				'id'    => 'intro_section',
+				'icon'  => 'dashicons-calendar',
+				'title' => __('News And Updates', 'retreatatcarrolton'),
+				'fields' => array(
+					$prefix . 'intro_heading',
+				),
+			),
+		),
+	));
+
+	$cmb_intro_section->add_field(array(
+		'name' => __('Heading', 'retreatatcarrolton'),
+		'id'   => $prefix . 'intro_section_heading',
+		'type' => 'text',
+		'desc' => __('Enter the heading for the Intro section.', 'retreatatcarrolton'),
+	));
+	
+	$cmb_intro_section->add_field(array(
+		'name' => __('Sub Heading', 'retreatatcarrolton'),
+		'id'   => $prefix . 'intro_section_sub_heading',
+		'type' => 'text',
+		'desc' => __('Enter the Sub heading for the Intro section.', 'retreatatcarrolton'),
+	));
+	$cmb_intro_section->add_field(array(
+		'name' => __('Intro description', 'retreatatcarrolton'),
+		'id'   => $prefix . 'intro_section_desc',
+		'type' => 'wysiwyg',
+		'desc' => __('Enter the description for Intro Section.', 'retreatatcarrolton'),
+	));
+	$cmb_intro_section->add_field(array(
+		'name' => __('Intro Side Image', 'retreatatcarrolton'),
+		'id'   => $prefix . 'intro_img',
+		'type' => 'file',
+		'desc' => __('Upload the Image for the Intro Section.', 'retreatatcarrolton'),
+	));
+	
+
+	
+	// Metabox for Contact Us Section
+	$cmb_contact_us = new_cmb2_box(array(
+		'id'            => $prefix . 'contact_us',
+		'title'         => __('contact Us', 'retreatatcarrolton'),
+		'object_types'  => array('page'),
+		'show_on_cb'    => 'hide_field_callback',
+		'tabs' => array(
+			array(
+				'id'    => 'contact_us',
+				'icon'  => 'dashicons-images-alt2',
+				'title' => __('Contact Us', 'retreatatcarrolton'),
+				'fields' => array(
+					$prefix . 'contact_us_heading',
+					$prefix . 'contact_us_image',
+					// Add more cards as needed
+				),
+			),
+		),
+	));
+$cmb_contact_us->add_field(array(
+		'name' => __('Heading', 'retreatatcarrolton'),
+		'id'   => $prefix . 'contact_us_heading',
+		'type' => 'text',
+		'desc' => __('Enter the heading for the Contact Us', 'retreatatcarrolton'),
+	));
+	$cmb_contact_us->add_field(array(
+		'name' => __('Sub Heading', 'retreatatcarrolton'),
+		'id'   => $prefix . 'contact_us_sub_heading',
+		'type' => 'text',
+		'desc' => __('Enter the Sub heading for the Contact Us', 'retreatatcarrolton'),
+	));
+	$cmb_contact_us->add_field(array(
+		'name' => __('Phone Number', 'retreatatcarrolton'),
+		'id'   => $prefix . 'contact_us_number',
+		'type' => 'text',
+		'desc' => __('Enter the Number for the Contact Us', 'retreatatcarrolton'),
+	));
+	$cmb_contact_us->add_field(array(
+		'name' => __('Address', 'retreatatcarrolton'),
+		'id'   => $prefix . 'contact_us_address',
+		'type' => 'text',
+		'desc' => __('Enter the Address for the Contact Us', 'retreatatcarrolton'),
+	));
+	 $cmb_contact_us->add_field(array(
+        'name'       => __('Map Embed Code', 'cmb2'),
+        'id'   => $prefix . 'map_embeded_code',
+        'type'       => 'text',
+	   'desc' => __('Enter the url of the Iframe(only URL).'),
+      
+    ));
+	// Metabox for Gallery Section
+	$cmb_gallery = new_cmb2_box(array(
+		'id'            => $prefix . 'gallery',
+		'title'         => __('Gallery', 'retreatatcarrolton'),
+		'object_types'  => array('page'),
+		'show_on_cb'    => 'hide_field_callback',
+		'tabs' => array(
+			array(
+				'id'    => 'gallery',
+				'icon'  => 'dashicons-images-alt2',
+				'title' => __('Gallery', 'retreatatcarrolton'),
+				'fields' => array(
+					$prefix . 'gallery',
+					
+				),
+			),
+		),
+	));
+	$cmb_gallery->add_field(array(
+		'name' => __('Heading', 'retreatatcarrolton'),
+		'id'   => $prefix . 'gallery_heading',
+		'type' => 'text',
+		'desc' => __('Enter the heading for the Gallery', 'retreatatcarrolton'),
+	));
+	$cmb_gallery->add_field(array(
+    'name'    => __('Gallery', 'retreatatcarrolton'),
+    'id'      => $prefix . 'gallery',
+    'type'    => 'group',
+    'description' => __('Add images and headings for the gallery.', 'retreatatcarrolton'),
+    'options' => array(
+        'group_title'   => __('Image {#}', 'retreatatcarrolton'), // {#} will be replaced by row number
+        'add_button'    => __('Add Another Image', 'retreatatcarrolton'),
+        'remove_button' => __('Remove Image', 'retreatatcarrolton'),
+        'sortable'      => true,
+		'closed'       =>true
+    ),
+    'fields'  => array(
+        array(
+            'name' => __('Image', 'retreatatcarrolton'),
+            'id'   => 'image',
+            'type' => 'file',
+        ),
+        array(
+            'name' => __('Image Short Description', 'retreatatcarrolton'),
+            'id'   => 'heading',
+            'type' => 'text',
+            'desc' => __('Enter the heading for this image.', 'retreatatcarrolton'),
+        ),
+    ),
+));
+
+		// Metabox for Amenities Section
+	$cmb_amenities = new_cmb2_box(array(
+		'id'            => $prefix . 'amenities',
+		'title'         => __('Amenities', 'retreatatcarrolton'),
+		'object_types'  => array('page'),
+		'show_on_cb'    => 'hide_field_callback',
+		'tabs' => array(
+			array(
+				'id'    => 'amenities',
+// 				'icon'  => 'dashicons-images-alt2',
+				'title' => __('Amenities', 'retreatatcarrolton'),
+				'fields' => array(
+					$prefix . 'amenities',
+					
+				),
+			),
+		),
+	));
+	$cmb_amenities->add_field(array(
+    'name'    => __('Amenities', 'retreatatcarrolton'),
+    'id'      => $prefix . 'amenities',
+    'type'    => 'group',
+    'description' => __('Add images and headings for the amenities.', 'retreatatcarrolton'),
+    'options' => array(
+        'group_title'   => __('Amenity {#}', 'retreatatcarrolton'), // {#} will be replaced by row number
+        'add_button'    => __('Add Another Image', 'retreatatcarrolton'),
+        'remove_button' => __('Remove Image', 'retreatatcarrolton'),
+        'sortable'      => true,
+		'closed'		=> true,	
+    ),
+    'fields'  => array(
+        array(
+            'name' => __('Amenity', 'retreatatcarrolton'),
+            'id'   => 'image',
+            'type' => 'file',
+        ),
+        array(
+            'name' => __('Amenity Short Description', 'retreatatcarrolton'),
+            'id'   => 'heading',
+            'type' => 'text',
+            'desc' => __('Enter the short Description for this image.', 'retreatatcarrolton'),
+        ),
+    ),
+));
+		function hide_field_callback() {
+    // Example condition: check if the page template is 'homepage.php'
+    if ( is_page_template( 'homepage.php' ) ) {
+        return true; // Show the field
+    }
+
+    return false; // Hide the field for other cases
+}
+}
+add_action( 'cmb2_admin_init', 'tf_register_homepage_sections_with_separate_tabs' );
+
+/**
+ * Display custom meta boxes with tabs
+ */
+function custom_meta_boxes_with_tabs() {
+	global $post;
+
+	// Replace 123 with the ID of the page where you want to show the meta boxes
+	$page_id_to_show_meta_boxes = 8; 
+
+	if ( $post->ID != $page_id_to_show_meta_boxes) {
+		return;
+	}
+	?>
+	<div class="custom-tabs">
+		<ul class="tab-links">
+			<li class="active"><a href="#home_banner">Home Banner</a></li>
+			<li><a href="#banner_card">Banner Card</a></li>
+			<li><a href="#introduction">Introduction</a></li>
+			<li><a href="#contact_us">Contact Us</a></li>
+			<li><a href="#gallery">Gallery</a></li>
+			<li><a href="#ammenties">Ammenties</a></li>	
+		</ul>
+		<div id="home_banner" class="tab-content-editor active">
+			<!-- Fields for Home Banner -->
+			<?php cmb2_metabox_form( 'homepage_home_banner', $post->ID ); ?>
+		</div>
+		<div id="banner_card" class="tab-content-editor">
+			<!-- Fields for Hunger In America -->
+			<?php cmb2_metabox_form( 'homepage_banner_card', $post->ID ); ?>
+		</div>
+		<div id="introduction" class="tab-content-editor">
+			<!-- Fields for News and Updates -->
+			<?php cmb2_metabox_form( 'homepage_intro_section', $post->ID ); ?>
+		</div>
+		<div id="contact_us" class="tab-content-editor">
+			<?php cmb2_metabox_form('homepage_contact_us', $post->ID); ?>	
+		</div>
+		<div id="gallery" class="tab-content-editor">
+			<?php cmb2_metabox_form('homepage_gallery', $post->ID); ?>
+		</div>
+		<div id="ammenties" class="tab-content-editor">
+			<?php cmb2_metabox_form('homepage_amenities', $post->ID); ?>
+		</div>
+		
+	</div>
+	
+	<?php
+	
+}
+add_action('edit_form_after_editor', 'custom_meta_boxes_with_tabs');
+
+
+
